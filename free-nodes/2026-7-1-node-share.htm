@@ -258,9 +258,9 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 使用透明代理时如何避免 DNS 泄露？</h5></div>
+    <div class="panel-heading"><h5>Netch 使用 TAP 驱动时 Windows 弹出网络变更提示，该如何处理？</h5></div>
     <div class="panel-body">
-        在 Mellow 中启用 fake-ip 或内置 DNS 解析功能，并将上游 DNS 指定为 DoH/DoT 服务，确保所有 DNS 请求通过代理转发而非本地解析，从而避免 ISP 或本地网络捕获实际访问域名。<hr />    </div>
+        这是正常现象，TAP 虚拟网卡会改变系统网络状态。建议在首次启用时允许驱动安装并授予网络权限，若频繁弹窗可在网络设置中调整网络识别类型或将 TAP 设为非计量连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + XTLS 在高延迟网络中如何优化连接？</h5></div>
@@ -268,34 +268,9 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
         XTLS 模式通过减少握手和加密开销降低延迟。结合策略组和多节点切换，可在高延迟或不稳定网络环境下保证网页浏览、视频播放和游戏连接稳定，提高用户体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 可以结合规则实现广告屏蔽吗？</h5></div>
-    <div class="panel-body">
-        可以。Surfboard 支持通过规则文件匹配广告域名或 URL，将其阻断或重定向。结合策略组定期更新规则，可以实现自动广告屏蔽，提升网页浏览体验并节省带宽。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>为什么使用 CDN 后仍然能被封？如何规避？</h5></div>
-    <div class="panel-body">
-        若 CDN 回源 IP 或配置不当可能泄露真实服务器信息，或者 CDN 本身被目标防火墙识别。应启用完整的反向代理配置、隐藏源站 IP 与禁用不必要的服务，必要时使用多级中转或更换 CDN 供应商。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 混淆方式如何提升抗封锁能力？</h5></div>
     <div class="panel-body">
         混淆方式可将流量伪装成正常 HTTPS 或 HTTP 数据，降低被 DPI 检测风险。合理选择协议和混淆组合，可以提升节点稳定性和长期可用性，确保科学上网顺畅。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 是否支持多客户端同时管理节点？</h5></div>
-    <div class="panel-body">
-        支持。Nekobox 可以独立管理多个客户端，如 Shadowsocks 和 Clash 节点，互不干扰。结合策略组，可实现多客户端流量分流和网络优化，提高便利性和效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 使用 TAP 驱动时 Windows 弹出网络变更提示，该如何处理？</h5></div>
-    <div class="panel-body">
-        这是正常现象，TAP 虚拟网卡会改变系统网络状态。建议在首次启用时允许驱动安装并授予网络权限，若频繁弹窗可在网络设置中调整网络识别类型或将 TAP 设为非计量连接。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan-Go 的多路复用（mux）如何开启？</h5></div>
-    <div class="panel-body">
-        Trojan-Go 在配置文件中通过启用 mux 参数即可实现多路复用。此功能允许多个连接共享同一隧道，减少握手延迟并提升整体传输效率，尤其在移动网络中表现出色。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 是否支持 UDP 加速？</h5></div>
@@ -303,9 +278,34 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
         支持。Hysteria2 通过 QUIC 协议原生支持 UDP 加速，对实时性要求高的应用（如游戏或语音通话）表现极佳，能显著降低延迟并提高连接稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 可以结合规则实现广告屏蔽吗？</h5></div>
+    <div class="panel-body">
+        可以。Surfboard 支持通过规则文件匹配广告域名或 URL，将其阻断或重定向。结合策略组定期更新规则，可以实现自动广告屏蔽，提升网页浏览体验并节省带宽。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Matsuri 如何提升节点连接效率？</h5></div>
     <div class="panel-body">
-        Matsuri 是一个支持多协议的代理工具，强调快速连接与自动切换功能。它可以根据延迟自动选择最优节点，减少手动切换的繁琐过程，保证网络体验的流畅性。    </div>
+        Matsuri 是一个支持多协议的代理工具，强调快速连接与自动切换功能。它可以根据延迟自动选择最优节点，减少手动切换的繁琐过程，保证网络体验的流畅性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>为什么使用 CDN 后仍然能被封？如何规避？</h5></div>
+    <div class="panel-body">
+        若 CDN 回源 IP 或配置不当可能泄露真实服务器信息，或者 CDN 本身被目标防火墙识别。应启用完整的反向代理配置、隐藏源站 IP 与禁用不必要的服务，必要时使用多级中转或更换 CDN 供应商。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan-Go 的多路复用（mux）如何开启？</h5></div>
+    <div class="panel-body">
+        Trojan-Go 在配置文件中通过启用 mux 参数即可实现多路复用。此功能允许多个连接共享同一隧道，减少握手延迟并提升整体传输效率，尤其在移动网络中表现出色。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 使用透明代理时如何避免 DNS 泄露？</h5></div>
+    <div class="panel-body">
+        在 Mellow 中启用 fake-ip 或内置 DNS 解析功能，并将上游 DNS 指定为 DoH/DoT 服务，确保所有 DNS 请求通过代理转发而非本地解析，从而避免 ISP 或本地网络捕获实际访问域名。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekobox 是否支持多客户端同时管理节点？</h5></div>
+    <div class="panel-body">
+        支持。Nekobox 可以独立管理多个客户端，如 Shadowsocks 和 Clash 节点，互不干扰。结合策略组，可实现多客户端流量分流和网络优化，提高便利性和效率。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -335,11 +335,11 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
     <div class="panel-body">
         <div class="row">
             <div class="text-center">
-                <a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=" data-type="Xingchen" data-code="register&code" target="_blank">
+                <a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">
                     <img src="/assets/website/img/G/xingchen.webp" class="avatar" alt="星辰机场">
                 </a>
                 <dl>
-                    <dt><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=" data-type="Xingchen" data-code="register&code" target="_blank">星辰机场</a></dt>
+                    <dt><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></dt>
                     <dd>
                         <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p>                    </dd>
                 </dl>
@@ -353,16 +353,16 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-5-27-clash-verge-rev-node.htm" title="分享上网梯子 - 5月27日20.6M/S|免费Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 5月27日20.6M/S|免费Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-30-free-node-subscribe.htm" title="分享上网梯子 - 6月30日20.1M/S|免费SSR节点/Clash节点/Shadowrocket节点/Singbox节点/V2ray节点/Trojan节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月30日20.1M/S|免费SSR节点/Clash节点/Shadowrocket节点/Singbox节点/V2ray节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-27-clash-v2ray-ss-ssr.htm" title="分享上网梯子 - 6月27日20.2M/S|免费Singbox节点/V2ray节点/SSR节点/Trojan节点/Clash节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月27日20.2M/S|免费Singbox节点/V2ray节点/SSR节点/Trojan节点/Clash节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-1-clash-v2ray-ss-ssr.htm" title="分享上网梯子 - 6月1日18.7M/S|免费V2ray节点/Singbox节点/Trojan节点/Shadowrocket节点/SSR节点/Clash节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月1日18.7M/S|免费V2ray节点/Singbox节点/Trojan节点/Shadowrocket节点/SSR节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-24-clash-verge-rev-nodes.htm" title="分享上网梯子 - 6月24日20.6M/S|免费SSR节点/Shadowrocket节点/Trojan节点/Singbox节点/V2ray节点/Clash节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月24日20.6M/S|免费SSR节点/Shadowrocket节点/Trojan节点/Singbox节点/V2ray节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-17-node-share.htm" title="分享上网梯子 - 6月17日20.1M/S|免费SSR节点/Trojan节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月17日20.1M/S|免费SSR节点/Trojan节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-5-clash-verge-rev-github.htm" title="分享上网梯子 - 5月5日18.3M/S|免费Trojan节点/Singbox节点/V2ray节点/SSR节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 5月5日18.3M/S|免费Trojan节点/Singbox节点/V2ray节点/SSR节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-29-clash-node-github.htm" title="分享上网梯子 - 6月29日18.1M/S|免费V2ray节点/Shadowrocket节点/Singbox节点/Clash节点/SSR节点/Trojan节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月29日18.1M/S|免费V2ray节点/Shadowrocket节点/Singbox节点/Clash节点/SSR节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-10-clash-verge-rev-github.htm" title="分享上网梯子 - 5月10日22.3M/S|免费V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/Singbox节点/SSR节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 5月10日22.3M/S|免费V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/Singbox节点/SSR节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-2-clash-node-daily-updates.htm" title="分享上网梯子 - 7月2日18.5M/S|免费Shadowrocket节点/V2ray节点/SSR节点/Trojan节点/Singbox节点/Clash节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 7月2日18.5M/S|免费Shadowrocket节点/V2ray节点/SSR节点/Trojan节点/Singbox节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-21-clash-stash.htm" title="分享上网梯子 - 6月21日18.6M/S|免费Shadowrocket节点/SSR节点/Singbox节点/Clash节点/V2ray节点/Trojan节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月21日18.6M/S|免费Shadowrocket节点/SSR节点/Singbox节点/Clash节点/V2ray节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-4-clash-stash-node.htm" title="分享上网梯子 - 7月4日22.3M/S|免费Singbox节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 7月4日22.3M/S|免费Singbox节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-8-clash-node-daily-updates.htm" title="分享上网梯子 - 7月8日20.4M/S|免费SSR节点/Clash节点/Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 7月8日20.4M/S|免费SSR节点/Clash节点/Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-26-clash-verge-rev-node-share.htm" title="分享上网梯子 - 6月26日21.7M/S|免费SSR节点/Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点/Clash节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月26日21.7M/S|免费SSR节点/Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-15-clash-verge-rev-github.htm" title="分享上网梯子 - 6月15日20.4M/S|免费Shadowrocket节点/Clash节点/Singbox节点/SSR节点/Trojan节点/V2ray节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月15日20.4M/S|免费Shadowrocket节点/Clash节点/Singbox节点/SSR节点/Trojan节点/V2ray节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-6-16-clash-node.htm" title="分享上网梯子 - 6月16日20.2M/S|免费V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点/Trojan节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月16日20.2M/S|免费V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-14-clash-meta-github.htm" title="分享上网梯子 - 6月14日22M/S|免费Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Clash节点/Trojan节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月14日22M/S|免费Shadowrocket节点/SSR节点/Singbox节点/V2ray节点/Clash节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-18-clash-stash-node.htm" title="分享上网梯子 - 6月18日22M/S|免费SSR节点/Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/V2ray节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 6月18日22M/S|免费SSR节点/Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/V2ray节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-9-clash-verge-rev-node.htm" title="分享上网梯子 - 7月9日22.8M/S|免费Clash节点/Shadowrocket节点/Singbox节点/V2ray节点/Trojan节点/SSR节点节点推荐，V2rayC梯子购买推荐">分享上网梯子 - 7月9日22.8M/S|免费Clash节点/Shadowrocket节点/Singbox节点/V2ray节点/Trojan节点/SSR节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -374,13 +374,10 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>
             </li>
                     </ul>
     </div>
@@ -410,7 +407,7 @@ sudo ufw </span><span><span class="hljs-built_in">enable</span></span><span>
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                                        <div>特别推荐：<b><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=" data-type="Xingchen" data-code="register&code" target="_blank">星辰机场</a></b> <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p></div>
+                                        <div>特别推荐：<b><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></b> <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p></div>
                                             <a href="/">分享梯子 订阅机场官网</a> 版权所有 Powered by WordPress
                     </p>
                 </div>
